@@ -1,0 +1,40 @@
+.search {
+  width: 45%;
+  margin-right: 5%;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  width: 50%;
+  font-size: 12px !important;
+  margin-bottom: 0px;
+}
+
+.thumb {
+  height: 75px;
+  width: 75px;
+  margin-top: 10px;
+  margin-bottom: -10px;
+}
+
+.item {
+  padding: 1%;
+  display: flex;
+}
+
+.title {
+  margin-left: 15%;
+  font-size: 12px !important;
+  margin-bottom: 0px;
+}
+
+.name {
+  margin-left: 5%;
+  font-size: 26px;
+  margin-top: 37px;
+  margin-bottom: -37px;
+}

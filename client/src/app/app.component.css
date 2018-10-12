@@ -1,0 +1,66 @@
+.mdl-layout__header, .mdl-layout__drawer-button, i, .dark {
+  background-color: #AA00FF !important;
+  color: white !important;
+}
+
+.gray {
+  background-color: #424242 !important;
+  color: white !important;
+  border: 0px !important;
+}
+
+.dark-gray {
+  background-color: #303030 !important;
+  color: white !important;
+}
+
+#plugged-components {
+  min-height: 100%;
+  position: relative;
+  padding: 2%;
+  max-width: 70%;
+  margin: auto;
+}
+
+body {
+  min-height: 100% !important;
+}
+
+.height {
+  height: 100%;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.title {
+  color: white;
+  font-size: 20px !important;
+  margin: 0px !important;
+}
+
+.links {
+  color: white !important;
+}
+.links:hover {
+  -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+  background-color: #AA00FF !important;
+}
+.links:active {
+  background-color: #FFF !important;
+}
+.nav-item:hover {
+  border-bottom: solid 1px #FFF;
+}
+.nav-item:active {
+  background-color: #FFF !important;
+}
+
+.logo {
+  text-decoration: none;
+}

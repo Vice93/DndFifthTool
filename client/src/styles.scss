@@ -1,0 +1,55 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+// dark theme
+$dark-primary: mat-palette($mat-deep-purple);
+$dark-accent:  mat-palette($mat-amber, A200, A100, A700);
+$dark-warn:    mat-palette($mat-deep-orange);
+$dark-theme:   mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+@mixin dark($theme) {
+  & {
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    background-color: mat-color($background, background);
+    color: mat-color($foreground, text);
+
+    // other html element styling here
+  }
+}
+
+@at-root main.dark-theme {
+  @include dark($dark-theme);
+}
+
+.mat-app-background {
+  @include dark($dark-theme);
+}
+
+.mat-form-field-empty.mat-form-field-label {
+    color: white !important;
+}
+
+.mat-card {
+  background-color: #424242 !important;
+  color: white !important;
+  border: 0px !important;
+  min-width: 500px;
+}
+
+.mat-button-toggle-label-content {
+  color: white;
+}
+.mat-button-toggle {
+  background-color: #303030;
+}
+
+.mat-button-toggle-checked {
+  background-color: #AA00FF;
+}

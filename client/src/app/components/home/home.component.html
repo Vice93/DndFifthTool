@@ -1,0 +1,28 @@
+<mat-card class="gray">
+
+  <div class="container">
+    <p class="header">Search for</p>
+    <p class="header">In category</p>
+  </div>
+
+  <div class="">
+    <mat-form-field class="search">
+      <input name="searchText" matInput placeholder="Search" aria-label="search" [(ngModel)]="searchText">
+    </mat-form-field>
+    <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="toggleValue" (change)="getData()">
+      <mat-button-toggle value="classes">Classes</mat-button-toggle>
+      <mat-button-toggle value="spells">Spells</mat-button-toggle>
+      <mat-button-toggle value="skills">Skills</mat-button-toggle>
+      <mat-button-toggle value="races">Races</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <p class="no-results">{{noResults}}</p>
+
+  <div [ngClass]="{'found': foundResults, 'empty': !foundResults }" class="results">
+    <div class="item" *ngFor="let res of results | filter: searchText; let i = index">
+      <img class="thumb" src="{{imgSrc}}" />
+      <p class="name">{{res.name}}</p>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+</mat-card>

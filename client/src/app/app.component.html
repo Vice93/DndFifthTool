@@ -1,0 +1,35 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header body-holder">
+  <header class="mdl-layout__header header-holder">
+    <div class="mdl-layout__header-row dark">
+      <!-- Title -->
+      <a routerLink='/' class="logo">
+        <p class="title">D&D 5th Edition Tool
+      </a>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only right-navigate">
+        <a class="mdl-navigation__link nav-item" routerLink='/'><i class="mdi mdi-magnify icon"></i>Home</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer drawer gray">
+    <p class="mdl-layout-title drawer-head dark"><b>D&D 5th Edition</b></p>
+    <nav class="mdl-navigation nav-drawer">
+      <a class="mdl-navigation__link links" routerLink='/profile'><i class="mdi mdi-account icon"></i>Min Profil</a>
+      <!-- <a class="mdl-navigation__link" routerLink='/activity'><i class="mdi mdi-run icon"></i>Finn Aktiviteter</a>
+      <a class="mdl-navigation__link" routerLink='/nyheter'><i class="mdi mdi-newspaper icon"></i>Les Nyheter</a>
+      <a *ngIf="hasAccess" class="mdl-navigation__link" routerLink='/admin'><i class="mdi mdi-content-copy icon"></i>Artikler</a>
+      <a *ngIf="hasAccess" class="mdl-navigation__link" routerLink='/upload'><i class="mdi mdi-upload icon"></i>Behandle Kart</a>
+      <a *ngIf="hasAdminAccess" class="mdl-navigation__link" routerLink='/dashboard'><i class="mdi mdi-account-group icon"></i>Brukere</a>
+      <a *ngIf="checkIfLoggedIn()" class="mdl-navigation__link" (click)="onLogoutClick()"><i class="mdi mdi-logout icon"></i>Logg ut</a>
+      <a *ngIf="!checkIfLoggedIn()" class="mdl-navigation__link" routerLink='/login'><i class="mdi mdi-login icon"></i>Logg inn</a> -->
+    </nav>
+  </div>
+  <main class="mdl-layout__content dark-theme height">
+    <div id="plugged-components">
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </main>
+</div>
