@@ -7,22 +7,26 @@
 
   <div class="">
     <mat-form-field class="search">
-      <input name="searchText" matInput placeholder="Search" aria-label="search" [(ngModel)]="searchText">
+      <input name="searchText" matInput placeholder="Search" matTooltip="Filter results based on search text" aria-label="search" [(ngModel)]="searchText">
     </mat-form-field>
     <mat-button-toggle-group name="fontStyle" aria-label="Font Style" [(ngModel)]="toggleValue" (change)="getData()">
-      <mat-button-toggle value="classes">Classes</mat-button-toggle>
-      <mat-button-toggle value="spells">Spells</mat-button-toggle>
-      <mat-button-toggle value="skills">Skills</mat-button-toggle>
-      <mat-button-toggle value="races">Races</mat-button-toggle>
+      <mat-button-toggle matTooltip="Select to get all classes" value="classes">Classes</mat-button-toggle>
+      <mat-button-toggle matTooltip="Select to get all spells" value="spells">Spells</mat-button-toggle>
+      <mat-button-toggle matTooltip="Select to get all skills" value="skills">Skills</mat-button-toggle>
+      <mat-button-toggle matTooltip="Select to get all races" value="races">Races</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
   <p class="no-results">{{noResults}}</p>
 
   <div [ngClass]="{'found': foundResults, 'empty': !foundResults }" class="results">
     <div class="item" *ngFor="let res of results | filter: searchText; let i = index">
-      <img class="thumb" src="{{imgSrc}}" />
+      <img class="thumb" src="{{loadImage(res.name)}}" />
       <p class="name">{{res.name}}</p>
-      <mat-divider></mat-divider>
+      <button mat-raised-button matTooltip="Learn more about the {{res.name}}" class="button">Read More</button>
+      <button mat-raised-button matTooltip="Find other categories compatible with the {{res.name}}" class="button">Find</button>
+      <button mat-raised-button matTooltip="Create a character including the {{res.name}}" class="button createButton">Create Character</button>
+      <mat-divider class="divider"></mat-divider>
     </div>
   </div>
 </mat-card>
+<mat-spinner class="loader" [ngClass]="{'show': loading, 'hidden': !loading}"></mat-spinner>

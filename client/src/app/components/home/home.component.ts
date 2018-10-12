@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from '../../filters/filter.pipe';
 import { ApiService } from '../../services/api.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-home',
@@ -13,68 +14,44 @@ export class HomeComponent implements OnInit {
 
   searchText = '';
   noResults = '';
-  imgSrc = '/assets/placeholder.png';
+  imgSrc = '/assets/img/';
   data = [];
   results = [];
   toggleValue = 'classes';
+  loading = false;
+  foundResults = false;
 
   ngOnInit() {
     this.getData();
   }
 
-  getData() {
+  loadImage(name) {
+    switch (this.toggleValue) {
+      case 'spells':
+        return this.imgSrc + 'spells.png';
+      case 'skills':
+      case 'races':
+      case 'classes':
+        return this.imgSrc + name.toLowerCase() + '.png';
+      default:
+        return this.imgSrc + 'skills.png';
+    }
+  }
 
+  getData() {
+    this.loading = true;
+    this.results = [];
     this.api.sendRequestAll(this.toggleValue).subscribe(res => {
       this.searchText = '';
-      if(res["count"] != 0) {
+      if (res['count'] !== 0) {
+        this.foundResults = true;
         this.data = res;
         this.results = res['results'];
       } else {
+        this.foundResults = false;
         this.noResults = 'Found no results.';
       }
+      this.loading = false;
     });
   }
-
-
-  stub = [{
-  	'count': 9,
-  	'results': [
-  		{
-  			'name': 'Dwarf',
-  			'url': 'http://www.dnd5eapi.co/api/races/1'
-  		},
-  		{
-  			'name': 'Elf',
-  			'url': 'http://www.dnd5eapi.co/api/races/2'
-  		},
-  		{
-  			'name': 'Halfling',
-  			'url': 'http://www.dnd5eapi.co/api/races/3'
-  		},
-  		{
-  			'name': 'Human',
-  			'url': 'http://www.dnd5eapi.co/api/races/4'
-  		},
-  		{
-  			'name': 'Dragonborn',
-  			'url': 'http://www.dnd5eapi.co/api/races/5'
-  		},
-  		{
-  			'name': 'Gnome',
-  			'url': 'http://www.dnd5eapi.co/api/races/6'
-  		},
-  		{
-  			'name': 'Half-Elf',
-  			'url': 'http://www.dnd5eapi.co/api/races/7'
-  		},
-  		{
-  			'name': 'Half-Orc',
-  			'url': 'http://www.dnd5eapi.co/api/races/8'
-  		},
-  		{
-  			'name': 'Tiefling',
-  			'url': 'http://www.dnd5eapi.co/api/races/9'
-  		}
-  	]
-  }];
 }
