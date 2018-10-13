@@ -22,7 +22,7 @@
     <div class="item" *ngFor="let res of results | filter: searchText; let i = index">
       <img class="thumb" src="{{loadImage(res.name)}}" />
       <p class="name">{{res.name}}</p>
-      <button mat-raised-button matTooltip="Learn more about the {{res.name}}" class="button">Read More</button>
+      <button mat-raised-button matTooltip="Learn more about the {{res.name}}" (click)="navigateLearn(res.name)" class="button">Read More</button>
       <button mat-raised-button matTooltip="Find other categories compatible with the {{res.name}}" class="button">Find</button>
       <button mat-raised-button matTooltip="Create a character including the {{res.name}}" class="button createButton">Create Character</button>
       <mat-divider class="divider"></mat-divider>

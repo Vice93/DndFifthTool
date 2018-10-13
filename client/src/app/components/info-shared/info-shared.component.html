@@ -1,0 +1,60 @@
+<div class="title">
+  Class Info
+</div>
+<mat-list class="flex_container">
+  <mat-list-item class="row">Class:&nbsp; {{classData['name']}}</mat-list-item>
+  <mat-list-item class="row">Subclasses:&nbsp; <div *ngFor="let sc of classData['subclasses']">{{sc['name']}}&nbsp;</div></mat-list-item>
+  <mat-list-item class="row">Hit Die:&nbsp; {{classData['hit_die']}}</mat-list-item>
+  <mat-list-item class="row">Saving Throws:&nbsp; <div *ngFor="let st of classData['saving_throws']">{{st['name']}}&nbsp;</div></mat-list-item>
+  <mat-list-item class="row">Proficiency Bonus:&nbsp; {{levelData[selectedLevel-1]['prof_bonus']}}</mat-list-item>
+  <mat-list-item class="row">Ability Score Bonus:&nbsp; {{levelData[selectedLevel-1]['ability_score_bonuses']}}</mat-list-item>
+  <mat-list-item class="row">Level:&nbsp; <mat-icon (click)="prev()">chevron_left</mat-icon>&nbsp;{{selectedLevel}}&nbsp;<mat-icon (click)="next()">chevron_right</mat-icon></mat-list-item>
+  <div class="flex-col">
+    <div class="add-margin-left">
+      Class Features:
+      <div class="features">
+        <mat-list role="feature">
+          <div style="margin-top:-10px"></div>
+          <div *ngFor="let item of features; let i = index">
+            <mat-list-item *ngIf="item['level'] <= selectedLevel" class="hvr-radial-in" role="featureitem">{{item['name']}}</mat-list-item>
+          </div>
+        </mat-list>
+      </div>
+    </div>
+    <div class="add-margin-left">
+      Skill Choices ({{choose}}&nbsp;available):
+      <div class="skills">
+        <mat-list role="skill">
+          <div style="margin-top:-10px"></div>
+          <div *ngFor="let skill of from">
+            <mat-list-item class="hvr-radial-in" role="skillitem">{{skill.name}}</mat-list-item>
+          </div>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+  <div class="flex-col">
+    <div class="add-margin-left">
+    Weapon proficiencies:
+      <div class="features">
+        <mat-list role="feature">
+          <div style="margin-top:-10px"></div>
+          <div *ngFor="let item of proficiencies; let i = index">
+            <mat-list-item class="hvr-radial-in" role="featureitem">{{item['name']}}</mat-list-item>
+          </div>
+        </mat-list>
+      </div>
+    </div>
+    <div class="add-margin-left">
+      Skill Choices ({{choose}}&nbsp;available):
+      <div class="skills">
+        <mat-list role="skill">
+          <div style="margin-top:-10px"></div>
+          <div *ngFor="let skill of from">
+            <mat-list-item class="hvr-radial-in" role="skillitem">{{skill.name}}</mat-list-item>
+          </div>
+        </mat-list>
+      </div>
+    </div>
+  </div>
+</mat-list>

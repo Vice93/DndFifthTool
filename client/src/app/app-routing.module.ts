@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LearnComponent } from './components/learn/learn.component';
 
 
 const appRoutes: Routes = [
@@ -9,6 +10,10 @@ const appRoutes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'learn',
+    component: LearnComponent
   },
   { path: '**', component: PageNotFoundComponent },
 

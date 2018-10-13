@@ -16,6 +16,10 @@ export class ApiService {
     return this.dnd5thDomain + type + '/';
   }
 
+  getUrlWithClass(className) {
+    return this.dnd5thDomain + 'classes/' + className;
+  }
+
   sendRequestAll(type) {
     const url = this.getUrlWithType(type);
     return this.http.get<any[]>(url, this.createHeaders()).pipe(map(res => res));
@@ -33,5 +37,17 @@ export class ApiService {
     };
   }
 
+  getLevel(className){
+    let url = this.getUrlWithClass(className) + '/levels';
+    return this.http.get<any>(url, this.createHeaders()).pipe(map(res => res));
+  }
 
+  getClass(className) {
+    let url = this.getUrlWithClass(className);
+    return this.http.get<any>(url, this.createHeaders()).pipe(map(res => res));
+  }
+
+  getStartingEquip(url) {
+    return this.http.get<any>(url, this.createHeaders()).pipe(map(res => res));
+  }
 }

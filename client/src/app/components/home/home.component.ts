@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterPipe } from '../../filters/filter.pipe';
 import { ApiService } from '../../services/api.service';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private api: ApiService) { }
+  constructor(private router: Router, private api: ApiService) { }
 
   searchText = '';
   noResults = '';
@@ -49,9 +49,21 @@ export class HomeComponent implements OnInit {
         this.results = res['results'];
       } else {
         this.foundResults = false;
-        this.noResults = 'Found no results.';
+        this.noResults = 'Found no results. This is probably because dnd5eapi.co is down.';
       }
       this.loading = false;
     });
   }
+
+  navigateLearn(name){
+    switch(this.toggleValue) {
+      case 'classes':
+        this.router.navigate(['/learn'], { queryParams: {
+          class: name }
+        });
+        break;
+    }
+
+  }
+
 }

@@ -1,0 +1,123 @@
+.features {
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+  padding-top: -10px;
+  user-select: none;
+}
+
+.features::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.features::-webkit-scrollbar  {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.features::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #AA00FF;
+}
+
+.skills {
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+  user-select: none;
+}
+
+.skills::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.skills::-webkit-scrollbar  {
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.skills::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #AA00FF;
+}
+
+.flex_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  border-bottom: 1px solid gray;
+}
+
+.add-margin-left {
+  margin-left: 16px;
+}
+
+.title{
+  font-size: 24px;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+mat-icon:hover {
+  cursor: pointer;
+}
+mat-icon {
+  user-select: none;
+}
+
+/* Radial In */
+.hvr-radial-in {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+  background: #AA00FF;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-radial-in:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #e1e1e1;
+  border-radius: 100%;
+  -webkit-transform: scale(2);
+  transform: scale(2);
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-radial-in:hover, .hvr-radial-in:focus, .hvr-radial-in:active {
+  color: white;
+}
+.hvr-radial-in:hover:before, .hvr-radial-in:focus:before, .hvr-radial-in:active:before {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
