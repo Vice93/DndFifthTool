@@ -58,7 +58,7 @@ export class InfoSharedComponent implements OnInit {
   selectedLevel = 1;
   choose = 0;
   proficiencies = [];
-  startingEquipment = [];
+  spells = [];
   class;
 
 
@@ -66,15 +66,14 @@ export class InfoSharedComponent implements OnInit {
 
   ngOnInit() {
     this.class = this.route.snapshot.queryParams['class'].toLowerCase();
-    let startingEquipUrl = '';
     //get class
     this.api.getClass(this.class).subscribe(res => {
       if (res != null) {
         this.from = res['proficiency_choices'][0]['from'];
         this.choose = res['proficiency_choices'][0]['choose'];
         this.proficiencies = res['proficiencies'];
-        startingEquipUrl = res['starting_equipment']['url'];
         this.classData = (res as Class);
+        this.getSpellsAndMapToClass(this.classData['index']);
       }
     });
 
@@ -90,27 +89,15 @@ export class InfoSharedComponent implements OnInit {
             for (let j in feat) {
               feat[j].level = res[i]['level'];
               this.features.push(feat[j]);
+              this.features.sort(this.compare);
             }
           }
         }
-        console.log(res);
       }
     });
-
-    if(startingEquipUrl != '') {
-      this.api.getStartingEquip(startingEquipUrl).subscribe(res => {
-        if(res != null) {
-          this.startingEquipment.push(res['starting_equipment'][0]);
-          for (let i in res) {
-
-          }
-        }
-      });
-    }
   }
 
   setLevel(index){
-    console.log(this.levelData);
     this.selectedLevel = index + 1;
   }
 
@@ -124,5 +111,22 @@ export class InfoSharedComponent implements OnInit {
     if(this.selectedLevel > 1) {
       this.selectedLevel--;
     }
+  }
+
+  getSpellsAndMapToClass(classIndex) {
+    this.api.getSpells(classIndex).subscribe(res => {
+      if(res != null) {
+        this.spells = res['data'];
+        this.spells.sort(this.compare);
+      }
+    });
+  }
+
+  compare(a,b) {
+    if ((a.spellname < b.spellname) || (a.name < b.name))
+      return -1;
+    if ((a.spellname > b.spellname) || (a.name > b.name))
+      return 1;
+    return 0;
   }
 }

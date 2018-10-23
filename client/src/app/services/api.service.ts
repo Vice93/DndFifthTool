@@ -10,6 +10,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   dnd5thDomain = 'http://www.dnd5eapi.co/api/';
+  domain = 'http://localhost:8080/';
 
   getUrlWithType(type) {
     if(type == null) return this.dnd5thDomain + 'classes/';
@@ -49,5 +50,31 @@ export class ApiService {
 
   getStartingEquip(url) {
     return this.http.get<any>(url, this.createHeaders()).pipe(map(res => res));
+  }
+
+  getSpells(classIndex){
+    return this.http.get<any>(this.domain + 'api/getSpellMap?classIndex=' + classIndex).pipe(map(res => res));
+  }
+
+  populateDbWithSpellClassMap(spells){
+    let resArray = [];
+    for(let i = 0; i<spells.length; i++) {
+      let url = spells[i]['url'];
+      this.http.get<any[]>(url, this.createHeaders()).subscribe(spell => {
+        for(let j = 0; j<spell['classes'].length; j++) {
+          let object = {
+            spellIndex: spell['index'],
+            spellname: spell['name'],
+            classIndex: spell['classes'][j]['url'].split('/classes/').pop(),
+            classname: spell['classes'][j]['name'],
+            level: spell['level']
+          }
+          this.http.post('http://localhost:8080/api/mapSpellToDb', object).subscribe(res => {
+            resArray.push(res);
+          });
+        }
+      });
+    }
+    return resArray;
   }
 }

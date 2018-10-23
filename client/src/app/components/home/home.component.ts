@@ -47,6 +47,11 @@ export class HomeComponent implements OnInit {
         this.foundResults = true;
         this.data = res;
         this.results = res['results'];
+
+        //this gets all spells and posts them in the db
+        // if(this.toggleValue == 'spells'){
+        //   this.api.populateDbWithSpellClassMap(this.results);
+        // }
       } else {
         this.foundResults = false;
         this.noResults = 'Found no results. This is probably because dnd5eapi.co is down.';

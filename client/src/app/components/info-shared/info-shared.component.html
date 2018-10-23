@@ -16,7 +16,7 @@
         <mat-list role="feature">
           <div style="margin-top:-10px"></div>
           <div *ngFor="let item of features; let i = index">
-            <mat-list-item *ngIf="item['level'] <= selectedLevel" class="hvr-radial-in" role="featureitem">{{item['name']}}</mat-list-item>
+            <mat-list-item *ngIf="item['level'] <= selectedLevel" class="hvr-radial-in custom-height" role="featureitem">[{{item['level']}}]&nbsp;{{item['name']}}</mat-list-item>
           </div>
         </mat-list>
       </div>
@@ -46,13 +46,14 @@
       </div>
     </div>
     <div class="add-margin-left">
-      Skill Choices ({{choose}}&nbsp;available):
+      Spell Choices:
       <div class="skills">
         <mat-list role="skill">
           <div style="margin-top:-10px"></div>
-          <div *ngFor="let skill of from">
-            <mat-list-item class="hvr-radial-in" role="skillitem">{{skill.name}}</mat-list-item>
+          <div *ngFor="let spell of spells; let i index">
+            <mat-list-item *ngIf="spell['level'] <= selectedLevel" class="hvr-radial-in" role="skillitem">[{{spell['level']}}]&nbsp;{{spell['spellname']}}</mat-list-item>
           </div>
+          <mat-list-item *ngIf="spells.length <= 0" class="hvr-radial-in" role="skillitem">Has no spells.</mat-list-item>
         </mat-list>
       </div>
     </div>

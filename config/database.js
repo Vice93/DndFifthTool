@@ -7,7 +7,9 @@
 ** check nodejs/API's/randombytes for reference
 */
 const crypto = require('crypto');
-const db_uri = process.env.db_uri;
+//SET db_uri = 'mongodb://localhost:27017/dnd-fifth-app'
+//const db_uri = process.env.db_uri;
+const db_uri = 'mongodb://localhost:27017/dnd-fifth-app';
 const logger = require('../services/logger.js');
 const secret = generateSecret();
 

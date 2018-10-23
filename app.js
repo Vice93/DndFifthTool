@@ -11,10 +11,13 @@ const dbConfig = require('./config/database');
 const path = require('path');
 // Allows a server and frontend data transfer AkA cross origin
 const cors = require('cors');
+const bodyParser = require('body-parser');
 //Error handling log to file
 const logger = require('./services/logger.js');
 //SET domain='localhost:8080'
-const domain = process.env.domain;
+//const domain = process.env.domain;
+const domain = 'localhost:8080';
+const apiRute = require('./routes/api_route')(router);
 
 app.use(cors({
   origin: [
@@ -34,16 +37,13 @@ mongoose.connect(dbConfig.uri, { useNewUrlParser: true }, (err) => {
   }
 });
 
+// parse application/json
+app.use(bodyParser.json({limit: '50mb'}));
+
 /**
 * use dist directory to get the response page when requested
 */
 app.use(express.static(__dirname + '/client/dist/'));
-
-app.use('*', (req, res) => {
-  if(req.method === 'GET' || req.url === '/'){
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
-  }
-});
 
 //create a cors middleware
 app.use(function(req, res, next) {
@@ -54,6 +54,14 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use('/api', apiRute);
+
+
+app.use('*', (req, res) => {
+  if(req.method === 'GET' || req.url === '/'){
+    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+  }
+});
 
 //specify port to listen to
 const port = 8080;
